@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getDatabase, ref, child, get, set } from 'firebase/database'
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,8 +18,7 @@ const firebaseConfig = {
   measurementId: 'G-KC18R8V51G',
 }
 
-// Initialize Firebase
-const firebase = initializeApp(firebaseConfig)
-const database = ref(getDatabase(firebase))
-// export  { database, child, get, set }
+const app = initializeApp(firebaseConfig);
+
+const database = getDatabase();
 export default database
