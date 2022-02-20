@@ -4,11 +4,20 @@ import { ApolloClient, InMemoryCache } from '@apollo/client'
 let apolloClient
 
 function createIsomorphLink() {
+  // server / statie 端 (SSR,SSG)
   if (typeof window === 'undefined') {
     const { SchemaLink } = require('@apollo/client/link/schema')
     const { schema } = require('./schema')
-    return new SchemaLink({ schema })
+    const { getDB } = require('../mongodb')
+    return new SchemaLink({
+      schema,
+      context: async () => {
+        let db = await getDB()
+        return { db: db.collection('blog') }
+      },
+    })
   } else {
+    // Client 端 (CSR)
     const { HttpLink } = require('@apollo/client/link/http')
     return new HttpLink({
       uri: '/api/graphql',

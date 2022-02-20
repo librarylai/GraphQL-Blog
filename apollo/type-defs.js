@@ -16,11 +16,12 @@ export const typeDefs = gql`
   type Mutation {
     addPost(title: String, content: String): Post
     deletePost(postId: ID):Post
+    updatePost(postId: ID,title: String, content: String):Post
   }
 
   type Query {
     viewer: User
-    viewAllBlogs: [Post]
+    viewAllPost: [Post]
     viewPost(postId: ID): Post
   }
 `
