@@ -13,7 +13,10 @@ function createIsomorphLink() {
       schema,
       context: async () => {
         let db = await getDB()
-        return { db: db.collection('blog') }
+        return { 
+          blogDB: db.collection('blog'),
+          userDB: db.collection('user')
+       }
       },
     })
   } else {

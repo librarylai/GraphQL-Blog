@@ -8,7 +8,7 @@ import Button from '@mui/material/Button'
 
 function PostCard({ cardProps, data, buttonProps = {} }) {
   const { handleDelete, handleEdit } = buttonProps
-  const { title, content } = data
+  const { title, content,author:{name} } = data
   return (
     <Card sx={{width:'350px'}} {...cardProps} >
       <CardContent>
@@ -16,6 +16,7 @@ function PostCard({ cardProps, data, buttonProps = {} }) {
           {title}
         </Typography>
         <Typography variant='body2'>{content}</Typography>
+        <Typography variant='body2'>{`作者：${name}`}</Typography>
       </CardContent>
       <CardActions>
         <Button size='small' onClick={() => handleEdit(data)}>

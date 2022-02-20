@@ -6,20 +6,24 @@ export const ALL_POST_QUERY = gql`
       id
       title
       content
+      author {
+        id
+        name
+      }
     }
   }
 `
 export const ADD_POST_QUERY = gql`
-  mutation AddPost($title: String, $content: String) {
-    addPost(title: $title, content: $content) {
+  mutation AddPost($title: String, $content: String, $authorId: ID) {
+    addPost(title: $title, content: $content, authorId: $authorId) {
       id
       title
     }
   }
 `
 export const UPDATE_POST_QUERY = gql`
-  mutation UpdatePost($postId: ID, $title: String, $content: String) {
-    updatePost(postId: $postId, title: $title, content: $content){
+  mutation UpdatePost($postId: ID, $title: String, $content: String, $authorId: ID) {
+    updatePost(postId: $postId, title: $title, content: $content, authorId: $authorId) {
       id
       title
     }

@@ -4,52 +4,53 @@ const resolvers = {
   Query: {
     // 查看全部 文章
     viewAllPost: async (root, args, context) => {
-      let allBlogs = await context.db.find().toArray()
+      let allBlogs = await context.blogDB.find().toArray()
       return allBlogs
     },
     viewPost: async (root, args, context) => {
       const { postId } = args
-      let post = await context.db.find({ id: postId })
+      let post = await context.blogDB.find({ id: postId })
       return post
     },
   },
   User: {
     posts: async (parent, arg, context) => {
-      let allBlogs = await context.db.find()
-      return allBlogs.filter((blog) => blog.author.id === parent.id)
+      let allUser = await context.userDB.find()
+      return allUser.filter((user) => user.id === parent.authorId)
     },
   },
   Post: {
-    author: async (parent) => {
-      let allUsers = await acontext.db.find()
-      return allUsers.find((user) => user.id === parent.author.id)
+    author: async (parent,arg, context) => {
+      let user = await context.userDB.findOne({id:parent.authorId})
+      return user
     },
   },
   Mutation: {
     addPost: async (root, arg, context) => {
       try {
-        const { title, content } = arg
+        const { title, content,authorId } = arg
         const params = {
           id: shortid.generate(),
           title,
           content,
-          authorId: 1, // 先都是自己
+          authorId,
         }
-        // 塞進 mongodb
-        const result = await context.db.insertOne(params)
+        // 塞進 mongoblogDB
+        const result = await context.blogDB.insertOne(params)
       } catch (error) {
         throw new ApolloError(error)
       }
     },
     updatePost: async (root, arg, context) => {
       try {
-        const { postId, title, content } = arg
+        const { postId, title, content , authorId} = arg
         const params = {
           title,
           content,
+          authorId
         }
-        // 塞進 mongodb
-        const result = await context.db.updateOne({ id: postId }, { $set: params })
+        // 塞進 mongoblogDB
+        const result = await context.blogDB.updateOne({ id: postId }, { $set: params })
       } catch (error) {
         throw new ApolloError(error)
       }
@@ -57,8 +58,8 @@ const resolvers = {
     deletePost: async (root, arg, context) => {
       try {
         const { postId } = arg
-        // 塞進 mongodb
-        const result = await context.db.deleteOne({ id: postId })
+        // 塞進 mongoblogDB
+        const result = await context.blogDB.deleteOne({ id: postId })
       } catch (error) {
         throw new ApolloError(error)
       }

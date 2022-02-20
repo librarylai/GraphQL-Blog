@@ -6,14 +6,16 @@ import PostCard from '@/components/card/PostCard'
 import PostDialog from '@/components/dialog/PostDialog'
 import { useImmer } from 'use-immer'
 import { ALL_POST_QUERY, ADD_POST_QUERY, UPDATE_POST_QUERY, DELETE_POST_QUERY } from '../graphql/gql/blog'
+const InitDialogPost = {
+  id: '',
+  title: '',
+  content: '',
+  authorId: 1, // 預設給自己
+  isEdit: false,
+}
 const Index = () => {
   const [state, setState] = useImmer({
-    dialogPost: {
-      id: '',
-      title: '',
-      content: '',
-      isEdit: false,
-    },
+    dialogPost: InitDialogPost,
     isOpenDialog: false,
   })
   const { dialogPost, isOpenDialog } = state
@@ -26,12 +28,13 @@ const Index = () => {
 
   // 點擊 Card 編輯按鈕
   function handleEdit(postItem) {
-    const { id, title, content } = postItem
-    handleTiggleDialog(true)
+    const { id, title, content, author } = postItem
+    handleToggleDialog(true)
     setState((draft) => {
       draft.dialogPost.id = id
       draft.dialogPost.title = title
       draft.dialogPost.content = content
+      draft.dialogPost.authorId = author.id
       draft.dialogPost.isEdit = true
     })
   }
@@ -46,6 +49,11 @@ const Index = () => {
       draft.dialogPost.content = e.target.value
     })
   }
+  function handleAuthorChange(e) {
+    setState((draft) => {
+      draft.dialogPost.authorId = e.target.value
+    })
+  }
   // 點擊 Card 刪除按鈕
   async function handleDelete(postItem) {
     await deletePost({ variables: { postId: postItem.id } })
@@ -53,32 +61,29 @@ const Index = () => {
   }
   // 清空 dialogCard 內資料
   function handleClose() {
-    handleTiggleDialog(false)
+    handleToggleDialog(false)
     setState((draft) => {
-      draft.dialogPost.id = ''
-      draft.dialogPost.title = ''
-      draft.dialogPost.content = ''
-      draft.dialogPost.isEdit = false
+      draft.dialogPost = InitDialogPost
     })
   }
-
-  function handleTiggleDialog(status) {
+  // Dialog 開關
+  function handleToggleDialog(status) {
     setState((draft) => {
       draft.isOpenDialog = status
     })
   }
   function handleRefetch() {
     refetch()
-    handleTiggleDialog(false)
+    handleToggleDialog(false)
   }
   // 新增文章
   async function hadleAddNewPost() {
-    await addPost({ variables: { title: dialogPost.title, content: dialogPost.content } })
+    await addPost({ variables: { title: dialogPost.title, content: dialogPost.content, authorId: dialogPost.authorId } })
     handleRefetch()
   }
   // 更新文章內容
   async function handleUpdatePost() {
-    await updatePost({ variables: { postId: dialogPost.id, title: dialogPost.title, content: dialogPost.content } })
+    await updatePost({ variables: { postId: dialogPost.id, title: dialogPost.title, content: dialogPost.content, authorId: dialogPost.authorId } })
     handleRefetch()
   }
   // render 所有文章
@@ -101,15 +106,17 @@ const Index = () => {
   return (
     <div>
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>{renderAllPosts()}</Box>
-      <Button variant='contained' onClick={handleTiggleDialog}>
+      <Button variant='contained' onClick={handleToggleDialog}>
         新增文章
       </Button>
       <PostDialog
+        data={dialogPost}
         open={isOpenDialog}
         handleClose={handleClose}
         handleSubmit={dialogPost.isEdit ? handleUpdatePost : hadleAddNewPost}
-        inputProps={{ inputValue: dialogPost.title, handleTitleChange: handleTitleChange }}
-        textareaProps={{ textareaValue: dialogPost.content, handleContentChange: handleContentChange }}
+        titleProps={{ handleTitleChange: handleTitleChange }}
+        contentProps={{ handleContentChange: handleContentChange }}
+        authorProps={{handleAuthorChange: handleAuthorChange}}
       />
     </div>
   )
