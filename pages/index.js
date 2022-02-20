@@ -84,7 +84,7 @@ const Index = () => {
   // 更新文章內容
   async function handleUpdatePost() {
     await updatePost({ variables: { postId: dialogPost.id, title: dialogPost.title, content: dialogPost.content, authorId: dialogPost.authorId } })
-    handleRefetch()
+    handleToggleDialog(false)
   }
   // render 所有文章
   function renderAllPosts() {
@@ -116,7 +116,7 @@ const Index = () => {
         handleSubmit={dialogPost.isEdit ? handleUpdatePost : hadleAddNewPost}
         titleProps={{ handleTitleChange: handleTitleChange }}
         contentProps={{ handleContentChange: handleContentChange }}
-        authorProps={{handleAuthorChange: handleAuthorChange}}
+        authorProps={{ handleAuthorChange: handleAuthorChange }}
       />
     </div>
   )

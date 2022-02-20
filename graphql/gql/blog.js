@@ -26,6 +26,11 @@ export const UPDATE_POST_QUERY = gql`
     updatePost(postId: $postId, title: $title, content: $content, authorId: $authorId) {
       id
       title
+      content
+      author {
+        id
+        name
+      }
     }
   }
 `

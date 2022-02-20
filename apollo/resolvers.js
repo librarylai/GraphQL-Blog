@@ -4,13 +4,11 @@ const resolvers = {
   Query: {
     // 查看全部 文章
     viewAllPost: async (root, args, context) => {
-      let allBlogs = await context.blogDB.find().toArray()
-      return allBlogs
+      return await context.blogDB.find().toArray()
     },
     viewPost: async (root, args, context) => {
       const { postId } = args
-      let post = await context.blogDB.find({ id: postId })
-      return post
+      return await context.blogDB.find({ id: postId })
     },
   },
   User: {
@@ -20,15 +18,14 @@ const resolvers = {
     },
   },
   Post: {
-    author: async (parent,arg, context) => {
-      let user = await context.userDB.findOne({id:parent.authorId})
-      return user
+    author: async (parent, arg, context) => {
+      return await context.userDB.findOne({ id: parent.authorId })
     },
   },
   Mutation: {
     addPost: async (root, arg, context) => {
       try {
-        const { title, content,authorId } = arg
+        const { title, content, authorId } = arg
         const params = {
           id: shortid.generate(),
           title,
@@ -43,14 +40,15 @@ const resolvers = {
     },
     updatePost: async (root, arg, context) => {
       try {
-        const { postId, title, content , authorId} = arg
+        const { postId, title, content, authorId } = arg
         const params = {
           title,
           content,
-          authorId
+          authorId,
         }
         // 塞進 mongoblogDB
-        const result = await context.blogDB.updateOne({ id: postId }, { $set: params })
+        await context.blogDB.updateOne({ id: postId }, { $set: params })
+        return await context.blogDB.find().toArray()
       } catch (error) {
         throw new ApolloError(error)
       }

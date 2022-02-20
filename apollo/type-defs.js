@@ -16,7 +16,7 @@ export const typeDefs = gql`
   type Mutation {
     addPost(title: String, content: String, authorId: ID): Post
     deletePost(postId: ID): Post
-    updatePost(postId: ID, title: String, content: String, authorId: ID): Post
+    updatePost(postId: ID, title: String, content: String, authorId: ID): [Post]
   }
 
   type Query {
