@@ -12,7 +12,6 @@
     "@mui/material": "^5.4.2",
     "@mui/styled-engine-sc": "^5.4.2",
     "apollo-server-micro": "^2.14.2",
-    "firebase": "^9.6.7",
     "graphql": "^14.0.2",
     "immer": "^9.0.12",
     "mongodb": "^4.4.0",

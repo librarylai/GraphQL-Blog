@@ -1,9 +1,9 @@
 import { useQuery, useMutation } from '@apollo/client'
-import { initializeApollo } from '../apollo/client'
+import { initializeApollo } from '@/apollo/client'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
-import PostCard from '../components/card/PostCard'
-import PostDialog from '../components/dialog/PostDialog'
+import PostCard from '@/components/card/PostCard'
+import PostDialog from '@/components/dialog/PostDialog'
 import { useImmer } from 'use-immer'
 import { ALL_POST_QUERY, ADD_POST_QUERY, UPDATE_POST_QUERY, DELETE_POST_QUERY } from '../graphql/gql/blog'
 const Index = () => {
