@@ -35,7 +35,7 @@ function PostDialog({ data, titleProps = {}, contentProps = {}, authorProps = {}
         </Box>
         <Box>
           <h4>作者</h4>
-          <Select  id='demo-simple-select' value={authorId}  onChange={handleAuthorChange}>
+          <Select id='demo-simple-select' value={authorId} onChange={handleAuthorChange}>
             <MenuItem value={1}>Library</MenuItem>
             <MenuItem value={2}>小王</MenuItem>
             <MenuItem value={3}>小賴</MenuItem>
@@ -51,6 +51,14 @@ function PostDialog({ data, titleProps = {}, contentProps = {}, authorProps = {}
   )
 }
 
-PostDialog.propTypes = {}
+PostDialog.propTypes = {
+  authorProps: PropTypes.object,
+  contentProps: PropTypes.object,
+  data: PropTypes.object,
+  handleClose: PropTypes.func,
+  handleSubmit:PropTypes.func,
+  open: PropTypes.bool,
+  titleProps: PropTypes.object,
+}
 
 export default PostDialog
