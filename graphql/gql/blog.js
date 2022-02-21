@@ -18,6 +18,11 @@ export const ADD_POST_QUERY = gql`
     addPost(title: $title, content: $content, authorId: $authorId) {
       id
       title
+      content
+      author {
+        id
+        name
+      }
     }
   }
 `
@@ -39,6 +44,11 @@ export const DELETE_POST_QUERY = gql`
     deletePost(postId: $postId) {
       id
       title
+      content
+      author {
+        id
+        name
+      }
     }
   }
 `

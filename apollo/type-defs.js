@@ -14,8 +14,8 @@ export const typeDefs = gql`
     author: User
   }
   type Mutation {
-    addPost(title: String, content: String, authorId: ID): Post
-    deletePost(postId: ID): Post
+    addPost(title: String, content: String, authorId: ID): [Post]
+    deletePost(postId: ID): [Post]
     updatePost(postId: ID, title: String, content: String, authorId: ID): [Post]
   }
 
