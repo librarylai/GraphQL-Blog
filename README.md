@@ -1,29 +1,19 @@
-# Apollo Server and Client Example
+# GraphQL-Blog
 
-[Apollo](https://www.apollographql.com/client/) is a GraphQL client that allows you to easily query the exact data you need from a GraphQL server. In addition to fetching and mutating data, Apollo analyzes your queries and their results to construct a client-side cache of your data, which is kept up to date as further queries and mutations are run.
+## 啟動專案
+> 安裝：yarn 
 
-In this simple example, we integrate Apollo seamlessly with [Next.js data fetching methods](https://nextjs.org/docs/basic-features/data-fetching) to fetch queries in the server and hydrate them in the browser.
+> 啟動：yarn dev 
 
-## Preview
+## 使用套件
+1. 前端/框架： Next.js、immer、use-immer、styled-components、GraphQL
+2. 後端：GraphQL
+3. DB： MongoDB
+4. UI Library： Material-UI 
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/api-routes-apollo-server-and-client)
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/api-routes-apollo-server-and-client&project-name=api-routes-apollo-server-and-client&repository-name=api-routes-apollo-server-and-client)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example api-routes-apollo-server-and-client api-routes-apollo-server-and-client-app
-# or
-yarn create next-app --example api-routes-apollo-server-and-client api-routes-apollo-server-and-client-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## 資源
+### 官方
+1. [Apollo Client](https://www.apollographql.com/docs/react/)
+2. [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
+3. [MongoDB](https://docs.mongodb.com/manual/introduction/)
+4. [Material-UI](https://mui.com/zh/getting-started/installation/)
