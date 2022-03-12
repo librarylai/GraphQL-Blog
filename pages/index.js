@@ -24,7 +24,7 @@ const Index = () => {
   // mutation
   const [addPost] = useMutation(ADD_POST_QUERY, {
     update(cache, { data: { addPost } }) {
-      let newData = { viewAllPost: [...addPost]}
+      let newData = { viewAllPost: [...addPost] }
       cache.writeQuery({
         query: ALL_POST_QUERY,
         data: newData,
@@ -35,7 +35,7 @@ const Index = () => {
   const [deletePost] = useMutation(DELETE_POST_QUERY, {
     // refetchQueries: [ALL_POST_QUERY], // 會多呼叫 ALL_POST_QUERY API 效能較差
     update(cache, { data: { deletePost } }) {
-      let newData = { viewAllPost: [...deletePost]}
+      let newData = { viewAllPost: [...deletePost] }
       cache.writeQuery({
         query: ALL_POST_QUERY,
         data: newData,
@@ -94,7 +94,7 @@ const Index = () => {
       variables: { title: dialogPost.title, content: dialogPost.content, authorId: dialogPost.authorId },
     })
     handleClose()
-    }
+  }
   // 更新文章內容
   async function handleUpdatePost() {
     await updatePost({
