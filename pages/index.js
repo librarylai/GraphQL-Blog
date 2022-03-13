@@ -6,6 +6,7 @@ import PostCard from '@/components/card/PostCard'
 import PostDialog from '@/components/dialog/PostDialog'
 import { useImmer } from 'use-immer'
 import { ALL_POST_QUERY, ADD_POST_QUERY, UPDATE_POST_QUERY, DELETE_POST_QUERY } from '../graphql/gql/blog'
+import { useAllPostQueryQuery, useAddPostMutation, useUpdatePostMutation, useDeletePostMutation } from '@/generated/generated'
 const InitDialogPost = {
   id: '',
   title: '',
@@ -19,10 +20,10 @@ const Index = () => {
     isOpenDialog: false,
   })
   const { dialogPost, isOpenDialog } = state
-  // query
-  const { data } = useQuery(ALL_POST_QUERY)
-  // mutation
-  const [addPost] = useMutation(ADD_POST_QUERY, {
+  // AllPostQuery
+  const { data } = useAllPostQueryQuery()
+  // useAddPostMutation
+  const [addPost] = useAddPostMutation({
     update(cache, { data: { addPost } }) {
       let newData = { viewAllPost: [...addPost] }
       cache.writeQuery({
@@ -31,8 +32,10 @@ const Index = () => {
       })
     },
   })
-  const [updatePost] = useMutation(UPDATE_POST_QUERY) //  If a cached object already exists with this key, Apollo Client overwrites any existing fields that are also included in the mutation response
-  const [deletePost] = useMutation(DELETE_POST_QUERY, {
+  // useUpdatePostMutation
+  const [updatePost] = useUpdatePostMutation() //  If a cached object already exists with this key, Apollo Client overwrites any existing fields that are also included in the mutation response
+  // useDeletePostMutation
+  const [deletePost] = useDeletePostMutation({
     // refetchQueries: [ALL_POST_QUERY], // 會多呼叫 ALL_POST_QUERY API 效能較差
     update(cache, { data: { deletePost } }) {
       let newData = { viewAllPost: [...deletePost] }

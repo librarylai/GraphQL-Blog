@@ -6,7 +6,8 @@
       "@/styles/*": ["styles/*"],
       "@/apollo/*": ["apollo/*"],
       "@/store/*": ["store/*"],
-      "@/hooks/*": ["hooks/*"]
+      "@/hooks/*": ["hooks/*"],
+      "@/generated/*":["generated/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

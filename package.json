@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
+    "generate": "graphql-codegen",
     "build": "next build",
     "start": "next start"
   },
@@ -9,6 +10,10 @@
     "@apollo/client": "^3.0.2",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/typescript": "^2.4.7",
+    "@graphql-codegen/typescript-operations": "^2.3.4",
+    "@graphql-codegen/typescript-react-apollo": "^3.2.10",
     "@mui/material": "^5.4.2",
     "@mui/styled-engine-sc": "^5.4.2",
     "@types/react-redux": "^7.1.23",
