@@ -7,7 +7,7 @@
       "@/apollo/*": ["apollo/*"],
       "@/store/*": ["store/*"],
       "@/hooks/*": ["hooks/*"],
-
+			"@/ABIs/*":["ABIs/*"]
     }
   }
 }
