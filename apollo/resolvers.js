@@ -27,10 +27,10 @@ const resolvers = {
 			try {
 				const { title, content, authorId } = arg
 				const params = {
-					id: shortid.generate(),
-					title,
-					content,
-					authorId,
+					id: shortid.generate(), // 產生一個這篇文章的 uuid 
+					title, // 文章標題
+					content, // 文章內容
+					authorId, // 作者 id 
 				}
 				// 塞進 mongoblogDB
 				await context.blogDB.insertOne(params)
