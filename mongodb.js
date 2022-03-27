@@ -1,10 +1,11 @@
 import { MongoClient } from 'mongodb'
+import 'dotenv/config'
 
 let db = null
 async function getDB() {
   try {
     // 方便 Demo ,之後轉移近 .env
-    const uri = 'mongodb+srv://graphql-blog:9DuxZbdFfG1j1z1h@cluster0.hboxy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+    const uri = process.env.DB_URL
     const dbClient = new MongoClient(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
