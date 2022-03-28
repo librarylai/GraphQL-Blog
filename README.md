@@ -138,7 +138,7 @@ type User { // ---- Object Type
 
 ### The Query and Mutation types
 
-整個 QraphQL Schema 其實可以說是一個 Onject Type，它又被稱為`Root Types`，而 Root Types 裡面又有幾個特殊的 Object Type (ex.『Query』、『Mutation)，它們分別為 Schema 的進入點(entry point)且各自代表著不同的意思。
+整個 QraphQL Schema 其實可以說是一個 Object Type，它又被稱為`Root Types`，而 Root Types 裡面又有幾個特殊的 Object Type (ex.『Query』、『Mutation)，它們分別為 Schema 的進入點(entry point)且各自代表著不同的意思。
 
 ```typescript=
 /*  Schema 定義 */
@@ -258,15 +258,48 @@ query viewPost($id: ID!){
 ---
 
 ### Interfaces 
-跟很多 type systems 一樣 GraphQL 也有支援 interfaces 的功能，在定義 Schema 的時候如果我們想讓不同的 Object Type 都共享某些 fields 時，則可以用 interface 來將共同的部分抓取出來，之後在各別實作(implementation)自己的 Object Type
+>An interface specifies a set of fields that multiple object types can include
+
+GraphQL 跟很多 type systems 一樣也有支援 `interfaces` 的功能，在定義 Schema 的時候如果我們想讓不同的 Object Type 都共享某些 fields 時，則可以用 interface 來將共同的部分抓取出來，之後在各別實作(implementation)自己的 Object Type。
+
 
 #### 簡單舉例：
-```typescript=
+當今天資料可能在【不同頁面】或是【不同功能】會不太一樣時，這代表所指的類別就也會不同。
 
+例如：八卦版頁面 Post type 裡面的 User type 指的是 Human，動物版頁面 Post type 裡面的 User type 指的是 Animals。
+
+而這時就可以將 User type 裡面共用的 fields 提出來成 `interface`，並分別做出 Human 與 Animals 這兩個 type，最後再依照流進 user 這個 `interface` 的資料進行分類(ex.有 hairColor 就是 Human type)。
+
+![](https://i.imgur.com/dG0UOJG.png)
+
+
+```typescript=
+/* 
+ * 原本 user 的 type 只設定為 Human 
+ * 但...當今天 user 資料可能在不同頁面或是不同情況時會 變成 Humna , Animals, God 等不同資料類型，
+ * 需要依造資料的不同去指定給它們不同的 type 時，
+ * 就可以用 interface 先將共同的部分取出(Character)，再各自實做
+ * */
 type query{
+    post: Post
+}
+type User {
+    user: Human
+}
+type Post {
+    user: User
+}
+/* ---------------------------- */
+/* 使用 interface */
+type query{
+   post: Post
+}
+type User {
     user: Character
 }
-
+type Pose {
+    user: User
+}
 /* 定義一個 角色 的 Interface */
 interface Character {
   id: ID!
@@ -288,8 +321,8 @@ type Animals implements Character{
 }
     
 /* Query 查詢資料 */
-query viewUser{
-    user{
+query viewPostUser{
+    post{
         id
         name
         ... on Human{ // 這邊用到 query 的 Inline Fragments 寫法
@@ -317,7 +350,7 @@ const resolvers = {
     },
   },
   Query: {
-    user: () => { ... }
+    post: () => { ... }
   },
 };
 ```
@@ -333,7 +366,7 @@ const resolvers = {
 ### Union Types
 > Unions and interfaces are abstract GraphQL types that enable a schema field to return one of multiple object types.
 
-Union Types 在實作上與 Interface 的方法大致相同，在 Query 與 Resolvers 的實作方面都一樣使用 `Inline Fragments` 與 `__resolveType` 這兩個方法，差別在於 union types 的宣告是使用 `union xxx` 開頭，且 union types 裡的 type 不必有共通的 fields 而 interface 的 implements 則是要強制包含該 interface 的 fields。
+Union Types 在實作上與 Interface 的方法大致相同，在 Query 與 Resolvers 的實作方面都一樣使用 `Inline Fragments` 與 `__resolveType` 這兩個方法，差別在於 union types 的宣告是使用 `union xxx` 開頭，且 union types 裡的 type 【不必】有共通的 fields，而 interface 的 implements 則是要強制包含該 interface 的 fields。
 
 #### 簡單舉例：
 
