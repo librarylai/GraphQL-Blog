@@ -13,6 +13,11 @@ export const typeDefs = gql`
     content: String!
     author: User
   }
+  type Comment {
+    id: ID!
+    postID: ID!
+    content: String
+  }
   type Mutation {
     addPost(title: String, content: String, authorId: ID): [Post]
     deletePost(postId: ID): [Post]
@@ -23,5 +28,8 @@ export const typeDefs = gql`
     viewer: User
     viewAllPost: [Post]
     viewPost(postId: ID): Post
+  }
+  type Subscription {
+    commentAdded(postId: ID): Comment
   }
 `

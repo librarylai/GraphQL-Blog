@@ -1,11 +1,11 @@
-import { useQuery, useMutation } from '@apollo/client'
+import { useQuery, useMutation, useSubscription } from '@apollo/client'
 import { initializeApollo } from '@/apollo/client'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import PostCard from '@/components/card/PostCard'
 import PostDialog from '@/components/dialog/PostDialog'
 import { useImmer } from 'use-immer'
-import { ALL_POST_QUERY, ADD_POST_QUERY, UPDATE_POST_QUERY, DELETE_POST_QUERY } from '../graphql/gql/blog'
+import { ALL_POST_QUERY, COMMENTS_SUBSCRIPTION } from '../graphql/gql/blog'
 import { useAllPostQueryQuery, useAddPostMutation, useUpdatePostMutation, useDeletePostMutation } from '@/generated/generated'
 const InitDialogPost = {
   id: '',
@@ -45,6 +45,11 @@ const Index = () => {
       })
     },
   })
+  //  useSubscription
+  // const { commentSubscriptData, loading } = useSubscription(
+  //   COMMENTS_SUBSCRIPTION
+  //   // { variables: { postId } }
+  // )
   // 點擊 Card 編輯按鈕
   function handleEdit(postItem) {
     const { id, title, content, author } = postItem

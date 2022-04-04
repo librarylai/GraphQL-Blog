@@ -1,5 +1,8 @@
 import { useMemo } from 'react'
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import { split, ApolloClient, InMemoryCache } from '@apollo/client'
+import { createClient } from 'graphql-ws'
+import { getMainDefinition } from '@apollo/client/utilities'
+
 
 let apolloClient
 
@@ -13,19 +16,35 @@ function createIsomorphLink() {
       schema,
       context: async () => {
         let db = await getDB()
-        return { 
+        return {
           blogDB: db.collection('blog'),
-          userDB: db.collection('user')
-       }
+          userDB: db.collection('user'),
+        }
       },
     })
   } else {
     // Client 端 (CSR)
     const { HttpLink } = require('@apollo/client/link/http')
-    return new HttpLink({
+    const { GraphQLWsLink } = require('@apollo/client/link/subscriptions')
+    const wsLink = new GraphQLWsLink(
+      createClient({
+        url: '/api/graphql',
+      })
+    )
+    const httpLink = new HttpLink({
       uri: '/api/graphql',
       credentials: 'same-origin',
     })
+    const splitLink = split(
+      ({ query }) => {
+        const definition = getMainDefinition(query)
+        // 如果 operation 為 subscription 則 return true
+        return definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
+      },
+      wsLink, // 如果是 true 則為 wsLink
+      httpLink // 如果是 false 則為 httpLink
+    )
+    return splitLink
   }
 }
 

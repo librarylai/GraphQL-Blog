@@ -52,3 +52,17 @@ export const DELETE_POST_QUERY = gql`
     }
   }
 `
+export const COMMENTS_SUBSCRIPTION = gql`
+  # subscription OnCommentAdded($postID: ID!) {
+  #   commentAdded(postID: $postID) {
+  #     id
+  #     content
+  #   }
+  # }
+  subscription OnCommentAdded {
+    commentAdded {
+      id
+      content
+    }
+  }
+`

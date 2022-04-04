@@ -7,19 +7,22 @@
     "start": "next start"
   },
   "dependencies": {
-    "@apollo/client": "^3.0.2",
+    "@apollo/client": "^3.5.10",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/typescript": "^2.4.7",
     "@graphql-codegen/typescript-operations": "^2.3.4",
     "@graphql-codegen/typescript-react-apollo": "^3.2.10",
+    "@graphql-tools/schema": "^8.3.6",
     "@mui/material": "^5.4.2",
     "@mui/styled-engine-sc": "^5.4.2",
     "@types/react-redux": "^7.1.23",
     "apollo-server-micro": "^2.14.2",
     "dotenv": "^16.0.0",
     "graphql": "^14.0.2",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.6.4",
     "immer": "^9.0.12",
     "mongodb": "^4.4.0",
     "next": "latest",
@@ -31,7 +34,8 @@
     "shortid": "^2.2.16",
     "styled-components": "^5.3.3",
     "use-immer": "^0.6.0",
-    "web3": "^1.7.1"
+    "web3": "^1.7.1",
+    "ws": "^8.5.0"
   },
   "devDependencies": {
     "typescript": "^4.6.2"

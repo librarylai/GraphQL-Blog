@@ -1,5 +1,8 @@
 import shortid from 'shortid'
 import { ApolloError } from 'apollo-server-micro'
+import { PubSub } from 'graphql-subscriptions';
+
+const pubsub = new PubSub();
 const resolvers = {
 	Query: {
 		// 查看全部 文章
@@ -65,5 +68,11 @@ const resolvers = {
 			}
 		},
 	},
+	Subscription:{
+		commentAdded:{
+			 // More on pubsub below
+			 subscribe: () => pubsub.asyncIterator(['COMMENT_ADDED'])
+		}
+	}
 }
 export default resolvers
