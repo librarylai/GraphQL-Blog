@@ -7,7 +7,8 @@ const apolloServer = new ApolloServer({
     let db = await getDB()
     return { 
     blogDB: db.collection('blog'),
-    userDB: db.collection('user')
+    userDB: db.collection('user'),
+    commentDB: db.collection('comment')
 
   }
   },

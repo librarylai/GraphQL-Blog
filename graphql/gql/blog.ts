@@ -52,6 +52,15 @@ export const DELETE_POST_QUERY = gql`
     }
   }
 `
+// 新增評論
+export const ADD_COMMENT = gql`
+  mutation AddComment($postId: ID, $comment: String, $authorId: ID) {
+    addComment(postId: $postId, comment: $comment, authorId: $authorId) {
+      comment
+    }
+  }
+`
+
 export const COMMENTS_SUBSCRIPTION = gql`
   # subscription OnCommentAdded($postID: ID!) {
   #   commentAdded(postID: $postID) {

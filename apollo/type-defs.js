@@ -16,12 +16,17 @@ export const typeDefs = gql`
   type Comment {
     id: ID!
     postID: ID!
-    content: String
+    comment: String
   }
   type Mutation {
+    # 增加文章
     addPost(title: String, content: String, authorId: ID): [Post]
+    # 刪除文章
     deletePost(postId: ID): [Post]
+    # 更新文章
     updatePost(postId: ID, title: String, content: String, authorId: ID): [Post]
+    # 增加評論
+    addComment(postId: ID, comment: String, authorId: ID):[Comment]
   }
 
   type Query {

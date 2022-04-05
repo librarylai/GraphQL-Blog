@@ -67,6 +67,22 @@ const resolvers = {
 				throw new ApolloError(error)
 			}
 		},
+		// 增加評論
+		addComment: async (root,arg,context) =>{
+			const { postId, comment, authorId } = arg
+			const params = {
+				id: shortid.generate(), // 產生一個這篇文章的 uuid 
+				postId, // 文章 id
+				comment, // 評論
+				authorId, // 作者 id 
+			}
+			// 塞進 mongoblogDB comment table
+			await context.commentDB.insertOne(params)
+			pubsub.publish('COMMENT_ADDED', {
+				commentAdded: {params}
+			  });
+
+		}
 	},
 	Subscription:{
 		commentAdded:{
