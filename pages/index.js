@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import PostCard from '@/components/card/PostCard'
 import PostDialog from '@/components/dialog/PostDialog'
 import { useImmer } from 'use-immer'
-import { ALL_POST_QUERY, COMMENTS_SUBSCRIPTION,ADD_COMMENT } from '../graphql/gql/blog'
+import { ALL_POST_QUERY, COMMENTS_SUBSCRIPTION, ADD_COMMENT } from '../graphql/gql/blog'
 import { useAllPostQueryQuery, useAddPostMutation, useUpdatePostMutation, useDeletePostMutation } from '@/generated/generated'
 const InitDialogPost = {
   id: '',
@@ -22,6 +22,7 @@ const Index = () => {
   const { dialogPost, isOpenDialog } = state
   // AllPostQuery
   const { data } = useAllPostQueryQuery()
+  
   // useAddPostMutation
   const [addPost] = useAddPostMutation({
     update(cache, { data: { addPost } }) {
@@ -36,7 +37,7 @@ const Index = () => {
   const [updatePost] = useUpdatePostMutation() //  If a cached object already exists with this key, Apollo Client overwrites any existing fields that are also included in the mutation response
   // useDeletePostMutation 刪除文章
   const [deletePost] = useDeletePostMutation({
-    // refetchQueries: [ALL_POST_QUERY], // 會多呼叫 ALL_POST_QUERY API 效能較差
+    refetchQueries: [ALL_POST_QUERY], // 會多呼叫 ALL_POST_QUERY API 效能較差
     update(cache, { data: { deletePost } }) {
       let newData = { viewAllPost: [...deletePost] }
       cache.writeQuery({
@@ -46,9 +47,7 @@ const Index = () => {
     },
   })
   // 增加評論
-  const [ addComment,{data:commentData,loading:commentloadingStatus} ] = useMutation(ADD_COMMENT)
-
-  
+  const [addComment, { data: commentData, loading: commentloadingStatus }] = useMutation(ADD_COMMENT)
 
   // 點擊 Card 編輯按鈕
   function handleEdit(postItem) {
@@ -83,17 +82,16 @@ const Index = () => {
     await deletePost({ variables: { postId: postItem.id } })
   }
   // 點擊 Card 送出評論
-  async function handleSandComment(postItem){
-    const { id,authorId,comment } = postItem
-    
+  async function handleSandComment(postItem) {
+    const { id, authorId, comment } = postItem
+
     await addComment({
-      variables:{
+      variables: {
         postId: id,
         authorId: 1,
-        comment: comment
-      }
+        comment: comment,
+      },
     })
-
   }
   // 清空 dialogCard 內資料
   function handleClose() {
@@ -139,7 +137,7 @@ const Index = () => {
             buttonProps={{
               handleEdit: handleEdit,
               handleDelete: handleDelete,
-              handleSandComment: handleSandComment
+              handleSandComment: handleSandComment,
             }}
           />
         </Box>

@@ -19,8 +19,7 @@ function PostCard({ cardProps, data, buttonProps = {} }) {
   } = data
   const [comment, setComment] = useState('')
   //  useSubscription
-  const { commentSubscriptData, loading } = useSubscription(COMMENTS_SUBSCRIPTION, { variables: { postId: id } })
-  console.log('commentSubscriptData',commentSubscriptData)
+  // const { commentSubscriptData, loading } = useSubscription(COMMENTS_SUBSCRIPTION, { variables: { postId: id } })
   return (
     <Card sx={{ width: '350px' }} {...cardProps}>
       <CardContent>

@@ -53,6 +53,8 @@ function createApolloClient() {
     ssrMode: typeof window === 'undefined',
     link: createIsomorphLink(),
     cache: new InMemoryCache(),
+    connectToDevTools: !(process.env.NODE_ENV === 'production'),
+
   })
 }
 
