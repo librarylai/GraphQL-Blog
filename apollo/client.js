@@ -2,8 +2,7 @@ import { useMemo } from 'react'
 import { split, ApolloClient, InMemoryCache } from '@apollo/client'
 import { createClient } from 'graphql-ws'
 import { getMainDefinition } from '@apollo/client/utilities'
-
-
+import _ from 'lodash'
 let apolloClient
 
 function createIsomorphLink() {
@@ -52,9 +51,40 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: createIsomorphLink(),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        User: {
+          fields: {
+            // read function
+            sortNotifications: (existing, { readField }) => {
+              // 注意：這邊我們使用了淺拷貝，因為 readField() 是 immutable
+              const notifications = [...readField('notifications')]
+              // use lodash orderBy
+              const sortData = _.orderBy(
+                notifications,
+                (item) => {
+                  // 取出每筆 notification 裡面的 content field
+                  const content = readField('content', item)
+                  return content.createTime
+                },
+                ['desc']
+              )
+              return sortData
+            },
+            /* same this */
+            // sortNotifications: {
+            //   read: () =>{}
+            // }
+            notifications: {
+              merge: (existing, incoming) => {
+                return [...(existing ?? []), ...incoming]
+              },
+            },
+          },
+        },
+      },
+    }),
     connectToDevTools: !(process.env.NODE_ENV === 'production'),
-
   })
 }
 

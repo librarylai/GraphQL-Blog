@@ -8,7 +8,7 @@
 
 >#### 本系列預計將會分成三個篇章：
 >1. 【筆記】GraphQL 系列(一) - 基本語法篇
->2. 【筆記】GraphQL 系列(二) - 瞭解 Apollo Client 並實作一個部落格
+>2. [【筆記】GraphQL 系列(二) - 瞭解 Apollo Client 並實作一個部落格](https://hackmd.io/@9iEIv7CwQuKe2LizHnDhaQ/rkJ0kqGQc)
 >3. 【筆記】GraphQL 系列(三) - 使用 GraphQL Code Generator 來優化部落格
 
 >#### 本篇內容主要參考以下文件與文章：
