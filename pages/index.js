@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import PostCard from '@/components/card/PostCard'
 import PostDialog from '@/components/dialog/PostDialog'
 import { useImmer } from 'use-immer'
-import { ALL_POST_QUERY, COMMENTS_SUBSCRIPTION, ADD_COMMENT } from '../graphql/gql/blog'
+import { ALL_POST_QUERY,ADD_POST_QUERY, COMMENTS_SUBSCRIPTION, ADD_COMMENT } from '../graphql/gql/blog'
 import { useAllPostQueryQuery, useAddPostMutation, useUpdatePostMutation, useDeletePostMutation } from '@/generated/generated'
 const InitDialogPost = {
   id: '',
@@ -22,9 +22,8 @@ const Index = () => {
   const { dialogPost, isOpenDialog } = state
   // AllPostQuery
   const { data } = useAllPostQueryQuery()
-  
   // useAddPostMutation
-  const [addPost] = useAddPostMutation({
+  const [addPost] = useMutation(ADD_POST_QUERY,{
     update(cache, { data: { addPost } }) {
       let newData = { viewAllPost: [...addPost] }
       cache.writeQuery({
@@ -33,6 +32,15 @@ const Index = () => {
       })
     },
   })
+  // const [addPost] = useAddPostMutation({
+  //   update(cache, { data: { addPost } }) {
+  //     let newData = { viewAllPost: [...addPost] }
+  //     cache.writeQuery({
+  //       query: ALL_POST_QUERY,
+  //       data: newData,
+  //     })
+  //   },
+  // })
   // useUpdatePostMutation 更新文章
   const [updatePost] = useUpdatePostMutation() //  If a cached object already exists with this key, Apollo Client overwrites any existing fields that are also included in the mutation response
   // useDeletePostMutation 刪除文章
@@ -109,14 +117,14 @@ const Index = () => {
 
   // 新增文章
   async function handleAddNewPost() {
-    await addPost({
+     addPost({
       variables: { title: dialogPost.title, content: dialogPost.content, authorId: dialogPost.authorId },
     })
     handleClose()
   }
   // 更新文章內容
   async function handleUpdatePost() {
-    await updatePost({
+     updatePost({
       variables: {
         postId: dialogPost.id,
         title: dialogPost.title,

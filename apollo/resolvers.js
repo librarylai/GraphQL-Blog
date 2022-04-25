@@ -16,6 +16,7 @@ const setNotificationList = () => {
         title: `Title:${randomNum}`,
         subTitle: `subTitle:${randomNum}`,
         createTime: randomDate(new Date(2020, 1, 1), new Date(), 0, 24),
+        isRead: (Math.random() * 10) > 5,
       },
     }
   })
@@ -34,7 +35,6 @@ const resolvers = {
       return await context.blogDB.find({ id: postId })
     },
     user: () => {
-		console.log('inin')
       return setNotificationList()
     },
   },
@@ -123,6 +123,10 @@ const resolvers = {
         commentAdded: { params },
       })
     },
+	// 更新通知
+	updateNotification: (root,arg) =>{
+		return true
+	}
   },
   Subscription: {
     commentAdded: {

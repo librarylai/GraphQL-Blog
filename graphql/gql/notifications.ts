@@ -10,6 +10,7 @@ export const ALL_NOTIFICATIONS_QUERY = gql`
           title
           subTitle
           createTime
+          isRead
         }
       }
       # 原始資料
@@ -19,6 +20,7 @@ export const ALL_NOTIFICATIONS_QUERY = gql`
           title
           subTitle
           createTime
+          isRead
         }
       }
     }
@@ -47,6 +49,14 @@ export const ALL_NOTIFICATIONS_SUBTITLE_QUERY = gql`
           subTitle
         }
       }
+    }
+  }
+`
+
+export const UPDATE_NOTIFICATION = gql`
+  mutation updateNotification($id: ID) {
+    updateNotification(notificationId: $id) {
+      status
     }
   }
 `

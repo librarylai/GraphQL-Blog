@@ -16,6 +16,7 @@ export const typeDefs = gql`
     title: String
     subTitle: String
     createTime: String
+    isRead: Boolean
   }
   type Post {
     id: ID!
@@ -28,6 +29,9 @@ export const typeDefs = gql`
     postID: ID!
     comment: String
   }
+  type Result {
+    status: Boolean
+  }
   type Mutation {
     # 增加文章
     addPost(title: String, content: String, authorId: ID): [Post]
@@ -37,6 +41,8 @@ export const typeDefs = gql`
     updatePost(postId: ID, title: String, content: String, authorId: ID): [Post]
     # 增加評論
     addComment(postId: ID, comment: String, authorId: ID): [Comment]
+    # 更新通知
+    updateNotification(notificationId: ID): Result
   }
 
   type Query {
