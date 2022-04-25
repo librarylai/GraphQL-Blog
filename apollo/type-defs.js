@@ -10,7 +10,7 @@ export const typeDefs = gql`
   }
   type Notification {
     id: ID
-    content: Content # 故意分出一個 Content 的 type 來讓 cache 機制做 mergeObject
+    content: Content # 故意分出一個 Content 的 type 來增加複雜度
   }
   type Content {
     title: String

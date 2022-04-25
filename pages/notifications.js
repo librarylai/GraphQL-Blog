@@ -61,9 +61,8 @@ function Notifications(props) {
         notificationId: item.id,
       },
       update: (cache) => {
-        console.log(`${item.__typename}:${item.id}`)
         cache.modify({
-          id: `${item.__typename}:${item.id}`,
+          id: cache.identify(item), //`${item.__typename}:${item.id}`,
           fields: {
             content: (existing) => {
               return {
@@ -73,6 +72,7 @@ function Notifications(props) {
                 isRead: true,
               }
             },
+
           },
         })
       },
