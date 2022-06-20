@@ -7,6 +7,7 @@ export const typeDefs = gql`
     status: String!
     posts: [Post]
     notifications: [Notification]
+    sortNotifications: [Notification]
   }
   type Notification {
     id: ID
@@ -50,8 +51,5 @@ export const typeDefs = gql`
     viewAllPost: [Post]
     viewPost(postId: ID): Post
     user: User
-  }
-  type Subscription {
-    commentAdded(postId: ID): Comment
   }
 `

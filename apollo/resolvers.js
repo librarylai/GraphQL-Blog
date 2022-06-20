@@ -16,7 +16,7 @@ const setNotificationList = () => {
         title: `Title:${randomNum}`,
         subTitle: `subTitle:${randomNum}`,
         createTime: randomDate(new Date(2020, 1, 1), new Date(), 0, 24),
-        isRead: (Math.random() * 10) > 5,
+        isRead: Math.random() * 10 > 5,
       },
     }
   })
@@ -52,7 +52,6 @@ const resolvers = {
       return parent.content
     },
   },
-
   Content: {
     title: (parent) => {
       return parent?.title
@@ -123,15 +122,9 @@ const resolvers = {
         commentAdded: { params },
       })
     },
-	// 更新通知
-	updateNotification: (root,arg) =>{
-		return true
-	}
-  },
-  Subscription: {
-    commentAdded: {
-      // More on pubsub below
-      subscribe: () => pubsub.asyncIterator(['COMMENT_ADDED']),
+    // 更新通知
+    updateNotification: (root, arg) => {
+      return true
     },
   },
 }

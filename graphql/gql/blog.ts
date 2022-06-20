@@ -60,18 +60,3 @@ export const ADD_COMMENT = gql`
     }
   }
 `
-
-export const COMMENTS_SUBSCRIPTION = gql`
-  # subscription OnCommentAdded($postID: ID!) {
-  #   commentAdded(postID: $postID) {
-  #     id
-  #     content
-  #   }
-  # }
-  subscription OnCommentAdded {
-    commentAdded {
-      id
-      content
-    }
-  }
-`

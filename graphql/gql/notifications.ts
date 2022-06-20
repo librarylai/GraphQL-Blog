@@ -28,7 +28,7 @@ export const ALL_NOTIFICATIONS_QUERY = gql`
 `
 
 export const ALL_NOTIFICATIONS_TITLE_QUERY = gql`
-  query fetchNotifications {
+  query fetchNotificationsTitle {
     user {
       notifications {
         id
@@ -41,7 +41,7 @@ export const ALL_NOTIFICATIONS_TITLE_QUERY = gql`
 `
 
 export const ALL_NOTIFICATIONS_SUBTITLE_QUERY = gql`
-  query fetchNotifications {
+  query fetchNotificationsSubTitle {
     user {
       notifications {
         id
