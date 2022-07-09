@@ -2,34 +2,18 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/styles/*": [
-        "styles/*"
-      ],
-      "@/apollo/*": [
-        "apollo/*"
-      ],
-      "@/store/*": [
-        "store/*"
-      ],
-      "@/hooks/*": [
-        "hooks/*"
-      ],
-      "@/generated/*": [
-        "generated/*"
-      ],
-      "@/ABIs/*": [
-        "ABIs/*"
-      ]
+      "@/components/*": ["components/*"],
+      "@/styles/*": ["styles/*"],
+      "@/apollo/*": ["apollo/*"],
+      "@/store/*": ["store/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/generated/*": ["generated/*"],
+      "@/graphql/*": ["graphql/*"],
+      "@/ABIs/*": ["ABIs/*"],
+      "@/pages/*": ["pages/*"]
     },
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -43,12 +27,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "__tests__/notifications.test.jsx"],
+  "exclude": ["node_modules"]
 }

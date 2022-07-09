@@ -7,7 +7,10 @@
       "@/apollo/*": ["apollo/*"],
       "@/store/*": ["store/*"],
       "@/hooks/*": ["hooks/*"],
-			"@/ABIs/*":["ABIs/*"]
+      "@/generated/*": ["generated/*"],
+      "@/graphql/*": ["graphql/*"],
+      "@/ABIs/*": ["ABIs/*"],
+      "@/pages/*": ["pages/*"]
     }
   }
 }

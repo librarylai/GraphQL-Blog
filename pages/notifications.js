@@ -45,8 +45,17 @@ const CardStyled = styled(Card)`
       }
     `}
 `
+
+const LoadingWrapper = styled.div`
+  margin-top: 60px;
+  font-size: 38px;
+  font-weight: bold;
+  color: #74738554;
+`
+
 function Notifications(props) {
-  const { data: notificationsData, fetchMore } = useQuery(ALL_NOTIFICATIONS_QUERY)
+  const { data: notificationsData, loading: notificationsDataLoading, fetchMore } = useQuery(ALL_NOTIFICATIONS_QUERY)
+  console.log('notificationsData', notificationsData)
   const [updateMutation] = useMutation(UPDATE_NOTIFICATION)
   const originNotifications = notificationsData?.user?.notifications
   const sortedNotifications = notificationsData?.user?.sortNotifications
@@ -72,7 +81,6 @@ function Notifications(props) {
                 isRead: true,
               }
             },
-
           },
         })
       },
@@ -146,12 +154,12 @@ function Notifications(props) {
       </InfiniteWrapper>
     )
   }
-  return (
-    <NotificationsContainer>
-      <Typography variant='h4' component='div'>
-        通知頁面
-      </Typography>
-      <Grid container spacing={2} justifyContent={'center'}>
+  const renderView = () => {
+    if (notificationsDataLoading) {
+      return <LoadingWrapper>Loading......</LoadingWrapper>
+    }
+    return (
+      <>
         <Grid item xs={6}>
           <Font>尚未排序</Font>
           {renderOriginalView()}
@@ -160,6 +168,16 @@ function Notifications(props) {
           <Font>排序過後</Font>
           {renderSortedView()}
         </Grid>
+      </>
+    )
+  }
+  return (
+    <NotificationsContainer>
+      <Typography variant='h4' component='div'>
+        通知頁面
+      </Typography>
+      <Grid container spacing={2} justifyContent={'center'}>
+        {renderView()}
       </Grid>
     </NotificationsContainer>
   )

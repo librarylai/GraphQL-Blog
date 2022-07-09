@@ -1,0 +1,317 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1. Test Blog Loading Situation 1`] = `
+<div>
+  <div>
+    <div
+      class="MuiBox-root css-2imjyh"
+    >
+      <div
+        class="pages__LoadingWrapper-sc-1cvwks4-0 ejApMF"
+      >
+        Loading....
+      </div>
+    </div>
+    <button
+      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-sghohy-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
+    >
+      新增文章
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`2. Test Blog Error Situation 1`] = `
+<div>
+  <div>
+    <div
+      class="MuiBox-root css-2imjyh"
+    >
+      <div
+        class="pages__ErrorWrapper-sc-1cvwks4-1 bOvhcR"
+      >
+        系統發生錯誤，請再重試一次
+      </div>
+    </div>
+    <button
+      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-sghohy-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
+    >
+      新增文章
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`3. Test Blog Data Situation 1`] = `
+<div>
+  <div>
+    <div
+      class="MuiBox-root css-2imjyh"
+    >
+      <div
+        class="MuiBox-root css-bgk70e"
+      >
+        <div
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-9nrmgl-MuiPaper-root-MuiCard-root"
+        >
+          <div
+            class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          >
+            <div
+              class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            >
+              好想出去玩
+            </div>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              天氣真好
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              作者：library
+            </p>
+          </div>
+          <div
+            class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          >
+            <div
+              class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            >
+              評論：
+            </div>
+            <div
+              class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorSecondary css-6oqcxu-MuiInputBase-root-MuiInput-root"
+              variant="outlined"
+            >
+              <input
+                class="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+                placeholder="寫上評論"
+                type="text"
+                value=""
+              />
+            </div>
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButtonBase-root  css-11qr2p8-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              送出評論
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+          >
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButtonBase-root  css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              編輯
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textError MuiButton-sizeSmall MuiButton-textSizeSmall MuiButtonBase-root  css-6ekzlo-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              刪除
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-bgk70e"
+      >
+        <div
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-9nrmgl-MuiPaper-root-MuiCard-root"
+        >
+          <div
+            class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          >
+            <div
+              class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            >
+              好想買遊戲王卡
+            </div>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              青眼白龍勒～～
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              作者：Zack
+            </p>
+          </div>
+          <div
+            class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          >
+            <div
+              class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            >
+              評論：
+            </div>
+            <div
+              class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorSecondary css-6oqcxu-MuiInputBase-root-MuiInput-root"
+              variant="outlined"
+            >
+              <input
+                class="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+                placeholder="寫上評論"
+                type="text"
+                value=""
+              />
+            </div>
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButtonBase-root  css-11qr2p8-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              送出評論
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+          >
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButtonBase-root  css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              編輯
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textError MuiButton-sizeSmall MuiButton-textSizeSmall MuiButtonBase-root  css-6ekzlo-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              刪除
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-bgk70e"
+      >
+        <div
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-9nrmgl-MuiPaper-root-MuiCard-root"
+        >
+          <div
+            class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          >
+            <div
+              class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            >
+              好想打遊戲
+            </div>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              殺～～～
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              作者：Wang
+            </p>
+          </div>
+          <div
+            class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          >
+            <div
+              class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+            >
+              評論：
+            </div>
+            <div
+              class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorSecondary css-6oqcxu-MuiInputBase-root-MuiInput-root"
+              variant="outlined"
+            >
+              <input
+                class="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+                placeholder="寫上評論"
+                type="text"
+                value=""
+              />
+            </div>
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButtonBase-root  css-11qr2p8-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              送出評論
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+          >
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButtonBase-root  css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              編輯
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textError MuiButton-sizeSmall MuiButton-textSizeSmall MuiButtonBase-root  css-6ekzlo-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              刪除
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-sghohy-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
+    >
+      新增文章
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</div>
+`;

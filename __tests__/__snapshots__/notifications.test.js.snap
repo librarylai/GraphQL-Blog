@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test notification page 1`] = `
+<div>
+  <div
+    class="notifications__NotificationsContainer-sc-1x1x4ou-0 cWurVW"
+  >
+    <div
+      class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+    >
+      通知頁面
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-12n0uxm-MuiGrid-root"
+    >
+      <div
+        class="notifications__LoadingWrapper-sc-1x1x4ou-4 kpeIWm"
+      >
+        Loading......
+      </div>
+    </div>
+  </div>
+</div>
+`;

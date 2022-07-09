@@ -5,8 +5,22 @@ import Box from '@mui/material/Box'
 import PostCard from '@/components/card/PostCard'
 import PostDialog from '@/components/dialog/PostDialog'
 import { useImmer } from 'use-immer'
-import { ALL_POST_QUERY,ADD_POST_QUERY, COMMENTS_SUBSCRIPTION, ADD_COMMENT } from '../graphql/gql/blog'
+import { ALL_POST_QUERY, ADD_POST_QUERY, COMMENTS_SUBSCRIPTION, ADD_COMMENT } from '../graphql/gql/blog'
 import { useAllPostQueryQuery, useAddPostMutation, useUpdatePostMutation, useDeletePostMutation } from '@/generated/generated'
+import styled from 'styled-components'
+
+const LoadingWrapper = styled.div`
+  margin-top: 60px;
+  font-size: 38px;
+  font-weight: bold;
+  color: #74738554;
+`
+const ErrorWrapper = styled.div`
+  margin-top: 60px;
+  font-size: 38px;
+  font-weight: bold;
+  color: red;
+`
 const InitDialogPost = {
   id: '',
   title: '',
@@ -21,9 +35,9 @@ const Index = () => {
   })
   const { dialogPost, isOpenDialog } = state
   // AllPostQuery
-  const { data } = useAllPostQueryQuery()
+  const { data, loading: allPostDataLoading, error: allPostDataError } = useAllPostQueryQuery()
   // useAddPostMutation
-  const [addPost] = useMutation(ADD_POST_QUERY,{
+  const [addPost] = useMutation(ADD_POST_QUERY, {
     update(cache, { data: { addPost } }) {
       let newData = { viewAllPost: [...addPost] }
       cache.writeQuery({
@@ -117,14 +131,14 @@ const Index = () => {
 
   // 新增文章
   async function handleAddNewPost() {
-     addPost({
+    addPost({
       variables: { title: dialogPost.title, content: dialogPost.content, authorId: dialogPost.authorId },
     })
     handleClose()
   }
   // 更新文章內容
   async function handleUpdatePost() {
-     updatePost({
+    updatePost({
       variables: {
         postId: dialogPost.id,
         title: dialogPost.title,
@@ -152,9 +166,14 @@ const Index = () => {
       )
     })
   }
+  function renderView() {
+    if (allPostDataLoading) return <LoadingWrapper>Loading....</LoadingWrapper>
+    if (allPostDataError) return <ErrorWrapper>系統發生錯誤，請再重試一次</ErrorWrapper>
+    return renderAllPosts()
+  }
   return (
     <div>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>{renderAllPosts()}</Box>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>{renderView()}</Box>
       <Button variant='contained' onClick={handleToggleDialog}>
         新增文章
       </Button>
@@ -171,17 +190,17 @@ const Index = () => {
   )
 }
 
-export async function getServerSideProps() {
-  const apolloClient = initializeApollo()
-  await apolloClient.query({
-    query: ALL_POST_QUERY,
-  })
+// export async function getServerSideProps() {
+//   const apolloClient = initializeApollo()
+//   await apolloClient.query({
+//     query: ALL_POST_QUERY,
+//   })
 
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-  }
-}
+//   return {
+//     props: {
+//       initialApolloState: apolloClient.cache.extract(),
+//     },
+//   }
+// }
 
 export default Index
