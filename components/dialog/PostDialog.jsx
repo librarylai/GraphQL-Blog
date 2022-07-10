@@ -31,7 +31,14 @@ function PostDialog({ data, titleProps = {}, contentProps = {}, authorProps = {}
         </Box>
         <Box>
           <h4>文章內容</h4>
-          <TextareaAutosize style={{ width: '100%' }} aria-label='minimum height' minRows={10} placeholder='Minimum 3 rows' onChange={handleContentChange} value={content} />
+          <TextareaAutosize
+            style={{ width: '100%' }}
+            aria-label='minimum height'
+            minRows={10}
+            placeholder='Minimum 3 rows'
+            onChange={handleContentChange}
+            value={content}
+          />
         </Box>
         <Box>
           <h4>作者</h4>
@@ -42,7 +49,7 @@ function PostDialog({ data, titleProps = {}, contentProps = {}, authorProps = {}
           </Select>
         </Box>
         <FlexEndBox>
-          <Button variant='contained' onClick={handleSubmit}>
+          <Button id='addPostSubmit' variant='contained' onClick={handleSubmit}>
             送出
           </Button>
         </FlexEndBox>
@@ -56,7 +63,7 @@ PostDialog.propTypes = {
   contentProps: PropTypes.object,
   data: PropTypes.object,
   handleClose: PropTypes.func,
-  handleSubmit:PropTypes.func,
+  handleSubmit: PropTypes.func,
   open: PropTypes.bool,
   titleProps: PropTypes.object,
 }

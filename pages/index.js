@@ -174,7 +174,7 @@ const Index = () => {
   return (
     <div>
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>{renderView()}</Box>
-      <Button variant='contained' onClick={handleToggleDialog}>
+      <Button id='addPost' variant='contained' onClick={handleToggleDialog}>
         新增文章
       </Button>
       <PostDialog
