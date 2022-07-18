@@ -35,4 +35,19 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
   test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Yarn CLI
+        uses: CultureHQ/actions-yarn@v1.0.1
+      
+      - name: Run Jest
+        uses: stefanoeb/jest-action@1.0.4
+
+     - name: npm install and test
+       run: |
+        yarn install
+        yarn test
+
       
