@@ -44,9 +44,6 @@ jobs:
       - name: Yarn CLI
         uses: CultureHQ/actions-yarn@v1.0.1
 
-      - name: Run Jest
-        uses: stefanoeb/jest-action@1.0.4
-
       - name: yarn install and test
         run: |
           yarn install
