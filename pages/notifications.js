@@ -55,7 +55,6 @@ const LoadingWrapper = styled.div`
 
 function Notifications(props) {
   const { data: notificationsData, loading: notificationsDataLoading, fetchMore } = useQuery(ALL_NOTIFICATIONS_QUERY)
-  console.log('notificationsData', notificationsData)
   const [updateMutation] = useMutation(UPDATE_NOTIFICATION)
   const originNotifications = notificationsData?.user?.notifications
   const sortedNotifications = notificationsData?.user?.sortNotifications

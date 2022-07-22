@@ -59,7 +59,7 @@ const Index = () => {
   const [updatePost] = useUpdatePostMutation() //  If a cached object already exists with this key, Apollo Client overwrites any existing fields that are also included in the mutation response
   // useDeletePostMutation 刪除文章
   const [deletePost] = useDeletePostMutation({
-    refetchQueries: [ALL_POST_QUERY], // 會多呼叫 ALL_POST_QUERY API 效能較差
+    // refetchQueries: [ALL_POST_QUERY], // 會多呼叫 ALL_POST_QUERY API 效能較差
     update(cache, { data: { deletePost } }) {
       let newData = { viewAllPost: [...deletePost] }
       cache.writeQuery({
@@ -190,17 +190,17 @@ const Index = () => {
   )
 }
 
-// export async function getServerSideProps() {
-//   const apolloClient = initializeApollo()
-//   await apolloClient.query({
-//     query: ALL_POST_QUERY,
-//   })
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo()
+  await apolloClient.query({
+    query: ALL_POST_QUERY,
+  })
 
-//   return {
-//     props: {
-//       initialApolloState: apolloClient.cache.extract(),
-//     },
-//   }
-// }
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+    },
+  }
+}
 
 export default Index
