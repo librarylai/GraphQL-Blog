@@ -344,7 +344,7 @@ exports[`4. Test Add new Blog Situation 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
             >
-              測試測試
+              測試內容
             </p>
             <p
               class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
@@ -418,16 +418,7 @@ exports[`4. Test Add new Blog Situation 1`] = `
       新增文章
       <span
         class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-      >
-        <span
-          class="css-y4cjyz-MuiTouchRipple-ripple MuiTouchRipple-ripple MuiTouchRipple-rippleVisible"
-          style="width: 2.8284271247461903px; height: 2.8284271247461903px; top: -1.4142135623730951px; left: -1.4142135623730951px;"
-        >
-          <span
-            class="MuiTouchRipple-child MuiTouchRipple-childLeaving"
-          />
-        </span>
-      </span>
+      />
     </button>
   </div>
 </div>

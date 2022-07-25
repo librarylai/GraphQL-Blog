@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb'
+import { MongoClient, ServerApiVersion } from 'mongodb'
 import 'dotenv/config'
 
 let db = null
@@ -9,6 +9,7 @@ async function getDB() {
     const dbClient = new MongoClient(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      serverApi: ServerApiVersion.v1,
     })
     const client = await dbClient.connect()
     db = client.db('graphql-blog') // database name
@@ -18,4 +19,4 @@ async function getDB() {
   }
 }
 
-export  { getDB }
+export { getDB }

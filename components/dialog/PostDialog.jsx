@@ -15,25 +15,24 @@ const FlexEndBox = styled(Box)`
   display: flex;
   justify-content: end;
 `
-function PostDialog({ data, titleProps = {}, contentProps = {}, authorProps = {}, handleClose, open, handleSubmit }) {
-  const { title, content, authorId } = data
+function PostDialog({ post, titleProps = {}, contentProps = {}, authorProps = {}, handleClose, open, handleSubmit }) {
+  const { title, content, authorId } = post
   const { handleTitleChange } = titleProps
   const { handleContentChange } = contentProps
   const { handleAuthorChange } = authorProps
-
   return (
     <Dialog fullWidth={true} maxWidth={'md'} onClose={handleClose} open={open}>
       <DialogTitle>新增文章</DialogTitle>
       <DialogContent>
         <Box>
           <h4>文章標題</h4>
-          <TextField fullWidth id='outlined-basic' label='title' variant='outlined' onChange={handleTitleChange} value={title} />
+          <TextField fullWidth aria-label='postDialog-title' label='title' variant='outlined' onChange={handleTitleChange} value={title} />
         </Box>
         <Box>
           <h4>文章內容</h4>
           <TextareaAutosize
             style={{ width: '100%' }}
-            aria-label='minimum height'
+            aria-label='postDialog-content'
             minRows={10}
             placeholder='Minimum 3 rows'
             onChange={handleContentChange}

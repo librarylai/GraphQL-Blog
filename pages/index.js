@@ -8,7 +8,8 @@ import { useImmer } from 'use-immer'
 import { ALL_POST_QUERY, ADD_POST_QUERY, COMMENTS_SUBSCRIPTION, ADD_COMMENT } from '../graphql/gql/blog'
 import { useAllPostQueryQuery, useAddPostMutation, useUpdatePostMutation, useDeletePostMutation } from '@/generated/generated'
 import styled from 'styled-components'
-
+import TextField from '@mui/material/TextField'
+import { useState } from 'react'
 const LoadingWrapper = styled.div`
   margin-top: 60px;
   font-size: 38px;
@@ -30,23 +31,14 @@ const InitDialogPost = {
 }
 const Index = () => {
   const [state, setState] = useImmer({
-    dialogPost: InitDialogPost,
     isOpenDialog: false,
   })
-  const { dialogPost, isOpenDialog } = state
+  const [post, setPost] = useState(InitDialogPost)
+  const { isOpenDialog } = state
   // AllPostQuery
   const { data, loading: allPostDataLoading, error: allPostDataError } = useAllPostQueryQuery()
   // useAddPostMutation
-  const [addPost] = useMutation(ADD_POST_QUERY, {
-    update(cache, { data: { addPost } }) {
-      let newData = { viewAllPost: [...addPost] }
-      cache.writeQuery({
-        query: ALL_POST_QUERY,
-        data: newData,
-      })
-    },
-  })
-  // const [addPost] = useAddPostMutation({
+  // const [addPost] = useMutation(ADD_POST_QUERY, {
   //   update(cache, { data: { addPost } }) {
   //     let newData = { viewAllPost: [...addPost] }
   //     cache.writeQuery({
@@ -55,6 +47,15 @@ const Index = () => {
   //     })
   //   },
   // })
+  const [addPost] = useAddPostMutation({
+    update(cache, { data: { addPost } }) {
+      let newData = { viewAllPost: [...addPost] }
+      cache.writeQuery({
+        query: ALL_POST_QUERY,
+        data: newData,
+      })
+    },
+  })
   // useUpdatePostMutation 更新文章
   const [updatePost] = useUpdatePostMutation() //  If a cached object already exists with this key, Apollo Client overwrites any existing fields that are also included in the mutation response
   // useDeletePostMutation 刪除文章
@@ -75,28 +76,31 @@ const Index = () => {
   function handleEdit(postItem) {
     const { id, title, content, author } = postItem
     handleToggleDialog(true)
-    setState((draft) => {
-      draft.dialogPost.id = id
-      draft.dialogPost.title = title
-      draft.dialogPost.content = content
-      draft.dialogPost.authorId = author.id
-      draft.dialogPost.isEdit = true
+    setPost({
+      id,
+      title,
+      content,
+      authorId: author.id,
+      isEdit: true,
     })
   }
 
   function handleTitleChange(e) {
-    setState((draft) => {
-      draft.dialogPost.title = e.target.value
+    setPost({
+      ...post,
+      title: e.target.value,
     })
   }
   function handleContentChange(e) {
-    setState((draft) => {
-      draft.dialogPost.content = e.target.value
+    setPost({
+      ...post,
+      content: e.target.value,
     })
   }
   function handleAuthorChange(e) {
-    setState((draft) => {
-      draft.dialogPost.authorId = e.target.value
+    setPost({
+      ...post,
+      authorId: e.target.value,
     })
   }
   // 點擊 Card 刪除按鈕
@@ -118,9 +122,7 @@ const Index = () => {
   // 清空 dialogCard 內資料
   function handleClose() {
     handleToggleDialog(false)
-    setState((draft) => {
-      draft.dialogPost = InitDialogPost
-    })
+    setPost(InitDialogPost)
   }
   // Dialog 開關
   function handleToggleDialog(status) {
@@ -132,7 +134,7 @@ const Index = () => {
   // 新增文章
   async function handleAddNewPost() {
     addPost({
-      variables: { title: dialogPost.title, content: dialogPost.content, authorId: dialogPost.authorId },
+      variables: { title: post.title, content: post.content, authorId: post.authorId },
     })
     handleClose()
   }
@@ -140,10 +142,10 @@ const Index = () => {
   async function handleUpdatePost() {
     updatePost({
       variables: {
-        postId: dialogPost.id,
-        title: dialogPost.title,
-        content: dialogPost.content,
-        authorId: dialogPost.authorId,
+        postId: post.id,
+        title: post.title,
+        content: post.content,
+        authorId: post.authorId,
       },
     })
     handleClose()
@@ -178,10 +180,10 @@ const Index = () => {
         新增文章
       </Button>
       <PostDialog
-        data={dialogPost}
+        post={post}
         open={isOpenDialog}
         handleClose={handleClose}
-        handleSubmit={dialogPost.isEdit ? handleUpdatePost : handleAddNewPost}
+        handleSubmit={post.isEdit ? handleUpdatePost : handleAddNewPost}
         titleProps={{ handleTitleChange: handleTitleChange }}
         contentProps={{ handleContentChange: handleContentChange }}
         authorProps={{ handleAuthorChange: handleAuthorChange }}
