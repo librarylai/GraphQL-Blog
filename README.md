@@ -13,6 +13,7 @@
 > 1.  [【筆記】GraphQL 系列(一) - 基本語法篇](https://hackmd.io/@9iEIv7CwQuKe2LizHnDhaQ/HJlKXB0b9)
 > 2.  [【筆記】GraphQL 系列(二) - 瞭解 Apollo Client 與 Apollo cache 機制](https://hackmd.io/@9iEIv7CwQuKe2LizHnDhaQ/rkJ0kqGQc)
 > 3.  [【筆記】GraphQL 系列(三) Scheme-first & Code-first 概念](https://hackmd.io/@9iEIv7CwQuKe2LizHnDhaQ/HJv-yX3t9)
+> 4.  [【筆記】GraphQL 系列(四) - GraphQL Apollo Testing use react-testing-library](https://hackmd.io/@9iEIv7CwQuKe2LizHnDhaQ/S1qcpAIjc)
 
 > #### 本篇內容主要參考以下文件與文章：
 >
