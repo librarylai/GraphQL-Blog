@@ -1,12 +1,12 @@
-# This is a basic workflow to help you get started with Actions
+# Github workflows 名稱
+name: GraphQL-blog CI
 
-name: CI
-
-# Controls when the workflow will run
+# 觸發條件
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
+  # 當 push code 到 master branch 時，這個 workflow 會被觸發
   push:
     branches: ['master']
+  # 當 pull_request 到 master branch 時，這個 workflow 會被觸發
   pull_request:
     branches: ['master']
 
@@ -14,17 +14,20 @@ on:
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# job(任務)可以有很多個，像是 build 任務、test 任務 ... 等
 jobs:
-  # This workflow contains a single job called "build"
+  # job - 測試任務
   test:
+    # 運行環境
     runs-on: ubuntu-latest
-
+    # test 這個工作裡的 執行步驟
     steps:
+      # 使用別人寫好的 actions
       - uses: actions/checkout@v3
-
+      # 使用別人寫好的 yarn actions
       - name: Yarn CLI
         uses: CultureHQ/actions-yarn@v1.0.1
-
+      # 執行 yarn install 與 yarn test
       - name: yarn install and test
         run: |
           yarn install
