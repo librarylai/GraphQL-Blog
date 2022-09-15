@@ -6,7 +6,7 @@
 
 最近因為面試的緣故接觸到了 GraphQL 以及它的相關框架，以前只有聽過它可以讓前端更彈性的拿取想要的資料結構，而不像以往使用 Restful 架構要等到後端回應 Response 後才會知道收到了哪些結構，剛好趁這次機會好好來學習一下 GraphQL 的語法、框架、套件...等相關內容。
 
-> 本篇是直接使用 Next.js 提供的 GraphQL Example 範例下去開發，如果懶的設定環境的朋友可以參考此範例 [Apollo Server and Client Example - Next.js](https://github.com/vercel/next.js/tree/canary/examples/api-routes-apollo-server-and-client)。
+> 本篇是直接使用 Next.js 提供的 GraphQL Example 範例下去實作，如果懶的設定環境的朋友可以參考此範例 [Apollo Server and Client Example - Next.js](https://github.com/vercel/next.js/tree/canary/examples/api-routes-apollo-server-and-client)。
 
 > #### 本系列文章列表：
 >
@@ -14,6 +14,7 @@
 > 2.  [【筆記】GraphQL 系列(二) - 瞭解 Apollo Client 與 Apollo cache 機制](https://hackmd.io/@9iEIv7CwQuKe2LizHnDhaQ/rkJ0kqGQc)
 > 3.  [【筆記】GraphQL 系列(三) Scheme-first & Code-first 概念](https://hackmd.io/@9iEIv7CwQuKe2LizHnDhaQ/HJv-yX3t9)
 > 4.  [【筆記】GraphQL 系列(四) - GraphQL Apollo Testing use react-testing-library](https://hackmd.io/@9iEIv7CwQuKe2LizHnDhaQ/S1qcpAIjc)
+> 5.  [【筆記】GraphQL 系列(五) - GraphQL 開發雜記、套件](https://hackmd.io/@9iEIv7CwQuKe2LizHnDhaQ/BkvyKgo1o)
 
 > #### 本篇內容主要參考以下文件與文章：
 >
@@ -751,7 +752,7 @@ addPost({ variables: { title: '我是 title', content: '我是 content', authorI
 
 #### 以上就是這次【 GraphQL 語法篇 】的全部內容，希望對想了解 Ｇ raphQL 的人能有一點點幫助，如有任何錯誤或冒犯的地方還請各位多多指教，謝謝您的觀看。
 
-#### Github : [https://github.com/librarylai/GraphQL-Blog](https://github.com/librarylai/GraphQL-Blog)
+#### GitHub : [https://github.com/librarylai/GraphQL-Blog](https://github.com/librarylai/GraphQL-Blog)
 
 ## Reference
 
