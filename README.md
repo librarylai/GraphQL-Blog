@@ -257,7 +257,7 @@ type query{
 
 ```typescript=
 /* 前端 Query 查詢 */
-query viewPost($id: ID!){
+query post($id: ID!){
     post(id: $id){
         title
     }
@@ -330,7 +330,7 @@ type Animals implements Character{
 }
 
 /* Query 查詢資料 */
-query viewPostUser{
+query postUser{
     post{
         id
         name

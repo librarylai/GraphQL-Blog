@@ -28,7 +28,7 @@ const mockBlogData = [
     },
     result: {
       data: {
-        viewAllPost: [
+        allPost: [
           createPostData('1', '好想出去玩', '天氣真好', 'library'),
           createPostData('2', '好想買遊戲王卡', '青眼白龍勒～～', 'Zack'),
           createPostData('3', '好想打遊戲', '殺～～～', 'Wang'),

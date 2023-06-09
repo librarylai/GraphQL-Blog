@@ -40,7 +40,7 @@ const Index = () => {
   // useAddPostMutation
   // const [addPost] = useMutation(ADD_POST_QUERY, {
   //   update(cache, { data: { addPost } }) {
-  //     let newData = { viewAllPost: [...addPost] }
+  //     let newData = { allPost: [...addPost] }
   //     cache.writeQuery({
   //       query: ALL_POST_QUERY,
   //       data: newData,
@@ -49,7 +49,7 @@ const Index = () => {
   // })
   const [addPost] = useAddPostMutation({
     update(cache, { data: { addPost } }) {
-      let newData = { viewAllPost: [...addPost] }
+      let newData = { allPost: [...addPost] }
       cache.writeQuery({
         query: ALL_POST_QUERY,
         data: newData,
@@ -62,7 +62,7 @@ const Index = () => {
   const [deletePost] = useDeletePostMutation({
     // refetchQueries: [ALL_POST_QUERY], // 會多呼叫 ALL_POST_QUERY API 效能較差
     update(cache, { data: { deletePost } }) {
-      let newData = { viewAllPost: [...deletePost] }
+      let newData = { allPost: [...deletePost] }
       cache.writeQuery({
         query: ALL_POST_QUERY,
         data: newData,
@@ -152,7 +152,7 @@ const Index = () => {
   }
   // render 所有文章
   function renderAllPosts() {
-    return data?.viewAllPost.map((postItem) => {
+    return data?.allPost.map((postItem) => {
       const { id } = postItem
       return (
         <Box key={id} mr={10} mb={5}>

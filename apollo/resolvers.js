@@ -27,10 +27,10 @@ const pubsub = new PubSub()
 const resolvers = {
   Query: {
     // 查看全部 文章
-    viewAllPost: async (root, args, context) => {
+    allPost: async (root, args, context) => {
       return await context.blogDB.find().toArray()
     },
-    viewPost: async (root, args, context) => {
+    post: async (root, args, context) => {
       const { postId } = args
       return await context.blogDB.find({ id: postId })
     },

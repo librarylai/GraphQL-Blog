@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const ALL_POST_QUERY = gql`
   query AllPostQuery {
-    viewAllPost {
+    allPost {
       id
       title
       content
