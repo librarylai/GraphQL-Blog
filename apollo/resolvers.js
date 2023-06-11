@@ -1,6 +1,7 @@
 import shortid from 'shortid'
 import { ApolloError } from 'apollo-server-micro'
 import { PubSub } from 'graphql-subscriptions'
+import { MOCK_USERS, MOCK_MARRIAGES, MOCK_TAGS } from '../mock/dentallData'
 function randomDate(start, end, startHour, endHour) {
   var date = new Date(+start + Math.random() * (end - start))
   var hour = (startHour + Math.random() * (endHour - startHour)) | 0
@@ -26,6 +27,9 @@ const setNotificationList = () => {
 const pubsub = new PubSub()
 const resolvers = {
   Query: {
+    me: async (root, args, context) => {
+      return await context.userDB.findOne({ id: '1' })
+    },
     // 查看全部 文章
     allPost: async (root, args, context) => {
       return await context.blogDB.find().toArray()
@@ -34,9 +38,14 @@ const resolvers = {
       const { postId } = args
       return await context.blogDB.find({ id: postId })
     },
-    user: () => {
-      return setNotificationList()
+    user: async (root, args, context) => {
+      const { userId } = args
+      return await context.userDB.findOne({ id: userId })
     },
+    /* For Dental Demo  */
+    dentalUsers: () => MOCK_USERS,
+    dentalMarriages: () => MOCK_MARRIAGES,
+    dentalTags: () => MOCK_TAGS,
   },
   User: {
     posts: async (parent, arg, context) => {
@@ -65,6 +74,7 @@ const resolvers = {
       return await context.userDB.findOne({ id: parent.authorId })
     },
   },
+
   Mutation: {
     addPost: async (root, arg, context) => {
       try {

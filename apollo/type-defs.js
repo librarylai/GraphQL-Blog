@@ -8,12 +8,20 @@ export const typeDefs = gql`
     name: String!
     "使用這狀態"
     status: String!
+    "性別"
+    sex: Sex
     "文章"
     posts: [Post]
     "通知"
     notifications: [Notification]
     sortNotifications: [Notification]
   }
+
+  enum Sex {
+    Male
+    Female
+  }
+
   type Notification {
     id: ID
     content: Content # 故意分出一個 Content 的 type 來增加複雜度
@@ -45,6 +53,28 @@ export const typeDefs = gql`
   type Result {
     status: Boolean
   }
+
+  type DUser {
+    id: ID!
+    login: String!
+    firstName: String!
+    lastName: String!
+    email: String!
+  }
+
+  type DMarriage {
+    id: ID!
+    code: String!
+    name: String!
+    order: Int!
+  }
+  type DTag {
+    id: ID!
+    type: String!
+    name: String!
+    modifiable: Boolean!
+  }
+
   type Mutation {
     " 增加文章 "
     addPost(title: String, content: String, authorId: ID): [Post]
@@ -59,8 +89,18 @@ export const typeDefs = gql`
   }
 
   type Query {
+    "我(登入者)"
+    me: User
+    "所有文章"
     allPost: [Post]
+    "單筆文章"
     post(postId: ID): Post
-    user: User
+    "單一使用者"
+    user(userId: ID): User
+
+    "dentall Demo"
+    dentalUsers: [DUser]
+    dentalMarriages: [DMarriage]
+    dentalTags: [DTag]
   }
 `
