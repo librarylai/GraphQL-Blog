@@ -47,7 +47,12 @@ const resolvers = {
     dentalMarriages: () => MOCK_MARRIAGES,
     dentalTags: () => MOCK_TAGS,
   },
+
   User: {
+    name: (parent) => {
+      // parent 就是 user 的 return value
+      return parent.name
+    },
     posts: async (parent, arg, context) => {
       let allUser = await context.userDB.find()
       return allUser.filter((user) => user.id === parent.authorId)

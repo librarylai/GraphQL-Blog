@@ -75,6 +75,7 @@ export const typeDefs = gql`
     modifiable: Boolean!
   }
 
+  # Mutation 特殊的 Type 代表 操作的進入點
   type Mutation {
     " 增加文章 "
     addPost(title: String, content: String, authorId: ID): [Post]
@@ -88,6 +89,7 @@ export const typeDefs = gql`
     updateNotification(notificationId: ID): Result
   }
 
+  # Query 特殊的 Type 代表 查詢的進入點
   type Query {
     "我(登入者)"
     me: User
@@ -97,7 +99,6 @@ export const typeDefs = gql`
     post(postId: ID): Post
     "單一使用者"
     user(userId: ID): User
-
     "dentall Demo"
     dentalUsers: [DUser]
     dentalMarriages: [DMarriage]
