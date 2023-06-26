@@ -53,9 +53,12 @@ const resolvers = {
       // parent 就是 user 的 return value
       return parent.name
     },
+    status: (parent) => {
+      return parent.status ?? null
+    },
     posts: async (parent, arg, context) => {
-      let allUser = await context.userDB.find()
-      return allUser.filter((user) => user.id === parent.authorId)
+      let allPosts = await context.blogDB.find().toArray()
+      return allPosts?.filter((post) => post.authorId === parent.id) ?? null
     },
     notifications: () => {
       return setNotificationList()
